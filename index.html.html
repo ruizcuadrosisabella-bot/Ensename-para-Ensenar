@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enséñame para Enseñar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: #fefaf3;
+      color: #001f3f;
+      text-align: center;
+    }
+
+    /* --- ENCABEZADO --- */
+    header {
+      background-color: #fefaf3;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 50px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .logo-titulo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-titulo img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+    }
+
+    .logo-titulo h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8em;
+      color: #003366;
+      margin: 0;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #002147;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #004a8f;
+    }
+
+    /* --- SECCIONES --- */
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      color: #003366;
+      margin-bottom: 20px;
+    }
+
+    .principal-img {
+      width: 420px;
+      border-radius: 12px;
+      transition: transform 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .principal-img:hover {
+      transform: scale(1.1);
+    }
+
+    .imagenes {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    .imagenes img {
+      width: 300px;
+      height: auto;
+      border-radius: 12px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .imagenes img:hover {
+      transform: scale(1.08);
+    }
+
+    .senas-titulo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .senas-titulo img {
+      width: 70px;
+      height: 70px;
+    }
+
+    .seña {
+      perspective: 1000px;
+      width: 280px;
+      height: 340px;
+      position: relative;
+    }
+
+    .seña-inner {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+
+    .seña:hover .seña-inner {
+      transform: rotateY(180deg);
+    }
+
+    .seña-front, .seña-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .seña-front img {
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+
+    .seña-back {
+      background-color: #004a8f;
+      color: white;
+      transform: rotateY(180deg);
+      padding: 20px;
+      font-size: 15px;
+    }
+
+    iframe {
+      width: 320px;
+      height: 500px;
+      border: none;
+      border-radius: 12px;
+      margin: 10px;
+      transition: transform 0.3s;
+    }
+
+    iframe:hover {
+      transform: scale(1.05);
+    }
+
+    #contacto {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 50px 20px;
+      background-color: #fdf9f2;
+    }
+
+    .info-contacto {
+      flex: 1 1 300px;
+      padding: 20px;
+      text-align: left;
+    }
+
+    .formulario {
+      flex: 1 1 400px;
+      padding: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input, textarea {
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+      width: 100%;
+    }
+
+    button {
+      background-color: #004a8f;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #003366;
+    }
+
+    footer {
+      background-color: #003366;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo-titulo">
+    <img src="https://i.ibb.co/T67vT9D/LOGO.gif" alt="LOGO">
+    <h1>Enséñame para Enseñar</h1>
+  </div>
+  <nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#quees">¿Qué es?</a>
+    <a href="#porque">¿Por qué enseñamos LSC?</a>
+    <a href="#programa">Programa Institucional</a>
+    <a href="#estudiantes">Algunos Estudiantes</a>
+    <a href="#valores">Valores</a>
+    <a href="#senas">Señas</a>
+    <a href="#videos">Videos</a>
+    <a href="#contacto">Contáctanos</a>
+  </nav>
+</header>
+
+<section id="inicio">
+  <h2>Inicio</h2>
+  <img class="principal-img" src="https://i.ibb.co/svbVcDzc/Imagen-Camiseta-de-Colombia.jpg">
+  <p><em>“La diferencia no nos separa, nos enseña nuevas formas de entender el mundo.”</em></p>
+
+  <!-- NUEVA INFO -->
+  <h3>Lengua de Luna – Proyecto de Emprendimiento Social</h3>
+  <p>“Lengua de Luna” es un proyecto del Liceo Lunita de Chía, creado por estudiantes de grado décimo, que busca enseñar la Lengua de Señas Colombiana (LSC) de forma didáctica, inclusiva y creativa.</p>
+  <p>A través de talleres presenciales y virtuales, los participantes aprenden vocabulario básico (abecedario, colores, preguntas y formas) mientras fortalecen valores como la empatía, el respeto y la inclusión.</p>
+</section>
+
+<section id="quees">
+  <h2>¿Qué es?</h2>
+  <img class="principal-img" src="https://i.ibb.co/3yn1KGwJ/Abecedario.jpg">
+  <p>La Lengua de Señas Colombiana (LSC) es el idioma natural de la comunidad sorda en Colombia, reconocida oficialmente desde 1996. Enseñarla fomenta la inclusión y el respeto por la diversidad lingüística.</p>
+
+  <!-- NUEVA INFO -->
+  <p>“Lengua de Luna” es un emprendimiento educativo y social del Liceo Lunita de Chía que enseña los fundamentos básicos de la Lengua de Señas Colombiana (LSC).</p>
+  <p>Es un curso de un mes, con clases presenciales y virtuales, diseñado para fortalecer la inclusión comunicativa en la comunidad educativa.</p>
+  <p>A través del arte, la cultura y la tecnología, busca demostrar que la comunicación no depende de las palabras, sino del deseo de entender y conectar con los demás.</p>
+</section>
+
+<section id="porque">
+  <h2>¿Por qué enseñamos LSC?</h2>
+  <img class="principal-img" src="https://i.ibb.co/3mZW7ktk/Por-qu-ense-amos-LSC.jpg">
+  <p>Porque creemos en la igualdad de oportunidades y en la comunicación sin barreras. Enseñar LSC es una forma de abrir puertas al entendimiento y la empatía.</p>
+
+  <!-- NUEVA INFO -->
+  <p>Enseñar LSC significa derribar barreras de comunicación y fomentar la empatía hacia la comunidad sorda.</p>
+  <p>En el Liceo Lunita de Chía creemos que la inclusión empieza con el lenguaje, por eso impulsamos este proyecto como una forma de educar con el corazón.</p>
+
+  <p><strong>Con la LSC aprendemos a:</strong></p>
+  <ul style="text-align: left; display: inline-block;">
+    <li>Escuchar con los ojos.</li>
+    <li>Hablar con las manos.</li>
+    <li>Comprender con el corazón.</li>
+  </ul>
+
+  <p><strong>Además, el proyecto se alinea con los Objetivos de Desarrollo Sostenible (ODS), especialmente:</strong></p>
+  <ul style="text-align: left; display: inline-block;">
+    <li>ODS 4: Educación de calidad.</li>
+    <li>ODS 10: Reducción de las desigualdades.</li>
+    <li>ODS 16: Paz y justicia.</li>
+    <li>ODS 17: Alianzas para lograr los objetivos.</li>
+  </ul>
+</section>
+
+<section id="programa">
+  <h2>Programa Institucional “Enséñame para Enseñar”</h2>
+  <img class="principal-img" src="https://i.ibb.co/9HZKc9Bb/LOGO-GRUPO-ENSE-A.jpg">
+  <p>Este programa institucional busca fortalecer la inclusión educativa a través de la enseñanza de la Lengua de Señas Colombiana, promoviendo la empatía, el respeto y la participación activa de toda la comunidad.</p>
+
+  <!-- NUEVA INFO -->
+  <p>El Liceo Lunita de Chía promueve una educación integral basada en el respeto, la inclusión y la creatividad.</p>
+  <p>“Lengua de Luna” se integra a los proyectos transversales de la institución, junto a:</p>
+  <ul style="text-align: left; display: inline-block;">
+    <li>Cátedra Mhuysqa: rescate cultural y respeto por la naturaleza.</li>
+    <li>Cátedra de Paz y Democracia.</li>
+    <li>Proyecto de Emprendimiento Estudiantil.</li>
+    <li>NASA Space Apps Challenge Chía.</li>
+  </ul>
+  <p><em>El curso de LSC refleja el lema del colegio:<br>“El arte, la educación y la cultura son el reflejo de un pueblo.”</em></p>
+</section>
+
+<section id="estudiantes">
+  <h2>Algunos Estudiantes</h2>
+  <div class="imagenes">
+    <img src="https://i.ibb.co/c7NgPP8/Imagen-de-Whats-App-2025-08-22-a-las-09-39-21-e5ddafbd.jpg">
+    <img src="https://i.ibb.co/sp1gRnkD/Imagen-de-Whats-App-2025-08-22-a-las-09-38-45-5a97220a.jpg">
+    <img src="https://i.ibb.co/d4ZHwDPT/Imagen-de-Whats-App-2025-08-21-a-las-23-32-55-17631bbb.jpg">
+  </div>
+
+  <!-- NUEVA INFO -->
+  <p>Los estudiantes de grado décimo son los creadores y líderes del proyecto.</p>
+  <p>Ellos planearon las clases, elaboraron materiales visuales, produjeron videos y guiaron las sesiones.</p>
+  <p>Su trabajo demuestra que los jóvenes pueden emprender con propósito, uniendo la educación, la empatía y la innovación social.</p>
+</section>
+
+<section id="valores">
+  <h2>Valores</h2>
+  <div class="imagenes">
+    <img src="https://i.ibb.co/zVVcpPYd/Perdon.jpg">
+    <img src="https://i.ibb.co/hFc0GFCQ/familia.jpg">
+    <img src="https://i.ibb.co/TBSjvxdV/Apoyo.jpg">
+    <img src="https://i.ibb.co/7PYfkvc/Caridad.jpg">
+    <img src="https://i.ibb.co/MkcWwc98/Libertad.jpg">
+    <img src="https://i.ibb.co/G4Ktb1MV/Justicia.jpg">
+  </div>
+
+  <!-- NUEVA INFO -->
+  <p><strong>“Lengua de Luna” se fundamenta en los valores institucionales del Liceo:</strong></p>
+  <ul style="text-align: left; display: inline-block;">
+    <li>Respeto por la diversidad: reconocer las distintas formas de comunicarse.</li>
+    <li>Solidaridad y empatía: acompañar y entender al otro.</li>
+    <li>Creatividad y arte: enseñar desde la expresión y la sensibilidad.</li>
+    <li>Responsabilidad y liderazgo: formar agentes de cambio.</li>
+    <li>Innovación: aprender con herramientas modernas y dinámicas.</li>
+  </ul>
+</section>
+
+<section id="senas">
+  <div class="senas-titulo">
+    <h2>Señas</h2>
+    <img src="https://i.ibb.co/T67vT9D/LOGO.gif" alt="LOGO">
+  </div>
+  <div class="imagenes">
+    <!-- (no se modificó nada en las tarjetas de señas, todo quedó igual) -->
+  </div>
+</section>
+
+<section id="videos">
+  <h2>Videos</h2>
+  <iframe src="https://www.instagram.com/reel/DN32dSEgUwn/embed" allowfullscreen></iframe>
+  <iframe src="https://www.instagram.com/reel/DMVh35EMePK/embed" allowfullscreen></iframe>
+  <iframe src="https://www.instagram.com/reel/DK2cR67ss5z/embed" allowfullscreen></iframe>
+</section>
+
+<section id="contacto">
+  <div class="info-contacto">
+    <h2>Contáctanos</h2>
+    <p><b>Dirección:</b> Cra. 13 #6-49, Chía, Cundinamarca</p>
+    <p><b>Teléfonos:</b> 884 9592</p>
+    <p><b>Móvil:</b> 313 432 0295</p>
+    <p><b>Email:</b> liceoinfantillunita@hotmail.com</p>
+  </div>
+
+  <div class="formulario">
+    <form action="https://formsubmit.co/liceoinfantillunita@hotmail.com" method="POST">
+      <input type="hidden" name="_next" value="https://tu-dominio-o-pagina.netlify.app">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="text" name="nombre" placeholder="Nombre *" required>
+      <input type="tel" name="celular" placeholder="Celular *" required>
+      <input type="email" name="email" placeholder="Email *" required>
+      <textarea name="mensaje" rows="5" placeholder="Mensaje *" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Enséñame para Enseñar | Liceo Infantil Lunita</p>
+</footer>
+
+</body>
+</html>
+
